@@ -1,0 +1,73 @@
+<template>       
+<lightning-card style="width: 100%;">
+<div class="slds-p-left_x-small">
+    <div class="slds-p-right_x-small">
+<div class="slds-page-header slds-page-header--object-home">
+    <lightning-layout>
+        <lightning-layout-item >
+            <lightning-icon icon-name="standard:task" alternative-text="Cadence" ></lightning-icon>
+        </lightning-layout-item>
+        <lightning-layout-item class="slds-m-left--small">
+            <p class="slds-text-title--caps slds-line-height--reset">Tasks</p>
+            <h1 class="slds-page-header__title slds-p-right--x-small">Cadence Creator</h1>
+        </lightning-layout-item>
+    </lightning-layout>
+</div>
+
+<div>
+    <label class="slds-form-element__label" for="text-input-id-1">Cadence Owner</label>
+    <c-custom-look-up obj-name="User" search-placeholder="Search User" icon-name="standard:user"  onlookupselected={handleUser}  > </c-custom-look-up>
+<p> User is: {userVal}</p>
+</div>
+
+<lightning-combobox
+    name="type"
+    label="Reminder Type"
+    value={value}
+    placeholder="Select Type"
+    options={options}
+    onchange={handleChange} >
+</lightning-combobox>
+<p>Selected value is: {value}</p>
+
+<lightning-input type="date" name="input1" label="Start Date" onchange={startDate} value={startD}></lightning-input>
+<p>Start Date : {startD}</p>
+
+<lightning-input type="number" name="input3" label="Number of Cadences" onchange={cadChange} value={noCad}></lightning-input>
+<p>Number  : {noCad}</p>
+
+<lightning-input type="number" name="input4" label="Interval between Cadences" onchange={intCadChange} value={intCad}></lightning-input>
+<p>Number  : {intCad}</p>
+
+<label class="slds-form-element__label" for="text-input-id-1">Consider Business Hours?</label>
+<lightning-input type="checkbox" onchange={onChecboxChange} >
+</lightning-input>
+<p>Checkbox : {checkboxVal}</p>
+
+<label class="slds-form-element__label" for="text-input-id-1">Do you want a Remindeer?</label>
+<lightning-input type="checkbox" onchange={onChecboxChangeRem} >
+</lightning-input>
+<p>Checkbox : {checkboxValRem}</p>
+
+<template if:true={checkboxValRem}>
+<lightning-combobox
+    name="Reminder"
+    label="Reminder Set"
+    value={valueRem}
+    placeholder="Select Reminder Type"
+    options={optionsRem}
+    onchange={handleChangeRem} >
+</lightning-combobox>
+<p>Selected value is: {valueRem}</p>
+</template>
+
+<div class="slds-m-top_large slds-grid slds-grid_align-center slds-align–absolute-center">
+<lightning-button variant="brand" label="Cancel" type="cancel" onclick={handleCancel}></lightning-button>
+    &nbsp;&nbsp; 
+<lightning-button  type="submit" variant="brand" label="Save" onclick={handleSave}></lightning-button>
+</div>
+
+</div>
+</div>
+</lightning-card>
+</template>
